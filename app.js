@@ -1,17 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware')
+var mongoose = require('mongoose');
+var { adminDefault } = require('./config/database')
 
 var admin = require('./admin/app');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var main = require('./app/app');
 var app = express();
+var User = require('./models/User');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//Set up default mongoose connection
+var mongoDB = 'mongodb://localhost:27017/init-express-js';
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+//Get the default connection
+var db = mongoose.connection;
 
 app.set('view engine', 'jade');
 
@@ -19,39 +24,39 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// adding the sass middleware
-console.log("__dirname", __dirname)
-app.use(
-  sassMiddleware({
-    src: __dirname + '/assets/scss/',
-    dest: __dirname + '/public/css/',
-    debug: true,
-    outputStyle: "compressed",
-    prefix: "/css",
-  })
-);
+app.use(session({
+    secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+db.once('open', function() {
+	// we're connected!
+	console.log("db connected");
+	User.findOne({ user_name : adminDefault.user_name }, function(err, user) { 
+		if(!user){
+			let newUser = new User(); 
+			newUser.name = adminDefault.name;
+			newUser.user_name = adminDefault.user_name;
+			newUser.email = adminDefault.email
+			newUser.role = adminDefault.role
+			newUser.setPassword(adminDefault.password); 
+			newUser.save((err, user) => {
+				if (err) {
+					throw err;
+				}
+			});
+		}
+	}); 
+});
+
 app.use('/admin', admin); // mount the sub app
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('pages/errors/error');
-});
+app.use('/', main);
 
 module.exports = app;

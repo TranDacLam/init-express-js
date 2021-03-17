@@ -1,0 +1,121 @@
+extends ../../layout/default
+
+block content
+  // Begin Page Content
+  .container-fluid
+    // Page Heading
+    h1.h3.mb-2.text-gray-800 Tables
+    p.mb-4
+      | DataTables is a third party plugin that is used to generate the demo table below.
+      | For more information about DataTables, please visit the 
+      a(target='_blank' href='https://datatables.net') official DataTables documentation
+      | .
+    // DataTales Example
+    .card.shadow.mb-4
+      .card-header.py-3
+        h6.m-0.font-weight-bold.text-primary DataTables Example
+      .card-body
+        .table-responsive
+          table#dataTable.table.table-bordered(width='100%' cellspacing='0')
+            thead
+              tr
+                th Name
+                th Position
+                th Office
+                th Age
+                th Start date
+                th Salary
+            tfoot
+              tr
+                th Name
+                th Position
+                th Office
+                th Age
+                th Start date
+                th Salary
+            tbody
+              tr
+                td Tiger Nixon
+                td System Architect
+                td Edinburgh
+                td 61
+                td 2011/04/25
+                td $320,800
+              tr
+                td Garrett Winters
+                td Accountant
+                td Tokyo
+                td 63
+                td 2011/07/25
+                td $170,750
+              tr
+                td Ashton Cox
+                td Junior Technical Author
+                td San Francisco
+                td 66
+                td 2009/01/12
+                td $86,000
+              tr
+                td Cedric Kelly
+                td Senior Javascript Developer
+                td Edinburgh
+                td 22
+                td 2012/03/29
+                td $433,060
+              tr
+                td Airi Satou
+                td Accountant
+                td Tokyo
+                td 33
+                td 2008/11/28
+                td $162,700
+              tr
+                td Brielle Williamson
+                td Integration Specialist
+                td New York
+                td 61
+                td 2012/12/02
+                td $372,000
+              tr
+                td Herrod Chandler
+                td Sales Assistant
+                td San Francisco
+                td 59
+                td 2012/08/06
+                td $137,500
+              tr
+                td Rhona Davidson
+                td Integration Specialist
+                td Tokyo
+                td 55
+                td 2010/10/14
+                td $327,900
+              tr
+                td Colleen Hurst
+                td Javascript Developer
+                td San Francisco
+                td 39
+                td 2009/09/15
+                td $205,500
+              tr
+                td Sonya Frost
+                td Software Engineer
+                td Edinburgh
+                td 23
+                td 2008/12/13
+                td $103,600
+              tr
+                td Jena Gaines
+                td Office Manager
+                td London
+                td 30
+                td 2008/12/19
+                td $90,560
+              tr
+                td Quinn Flynn
+                td Support Lead
+                td Edinburgh
+                td 22
+                td 2013/03/03
+                td $342,000
+  // /.container-fluid

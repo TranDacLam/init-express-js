@@ -1,13 +1,17 @@
 extends ../../layout/default
 
 block content
+	// Begin Page Content
   .container-fluid
+    // Page Heading
     .d-sm-flex.align-items-center.justify-content-between.mb-4
       h1.h3.mb-0.text-gray-800 Dashboard
       a.d-none.d-sm-inline-block.btn.btn-sm.btn-primary.shadow-sm(href='#')
         i.fas.fa-download.fa-sm.text-white-50
         |  Generate Report
+    // Content Row
     .row
+      // Earnings (Monthly) Card Example
       .col-xl-3.col-md-6.mb-4
         .card.border-left-primary.shadow.h-100.py-2
           .card-body
@@ -18,6 +22,7 @@ block content
                 .h5.mb-0.font-weight-bold.text-gray-800 $40,000
               .col-auto
                 i.fas.fa-calendar.fa-2x.text-gray-300
+      // Earnings (Monthly) Card Example
       .col-xl-3.col-md-6.mb-4
         .card.border-left-success.shadow.h-100.py-2
           .card-body
@@ -28,6 +33,7 @@ block content
                 .h5.mb-0.font-weight-bold.text-gray-800 $215,000
               .col-auto
                 i.fas.fa-dollar-sign.fa-2x.text-gray-300
+      // Earnings (Monthly) Card Example
       .col-xl-3.col-md-6.mb-4
         .card.border-left-info.shadow.h-100.py-2
           .card-body
@@ -43,6 +49,7 @@ block content
                       .progress-bar.bg-info(role='progressbar' style='width: 50%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100')
               .col-auto
                 i.fas.fa-clipboard-list.fa-2x.text-gray-300
+      // Pending Requests Card Example
       .col-xl-3.col-md-6.mb-4
         .card.border-left-warning.shadow.h-100.py-2
           .card-body
@@ -53,9 +60,12 @@ block content
                 .h5.mb-0.font-weight-bold.text-gray-800 18
               .col-auto
                 i.fas.fa-comments.fa-2x.text-gray-300
+    // Content Row
     .row
+      // Area Chart
       .col-xl-8.col-lg-7
         .card.shadow.mb-4
+          // Card Header - Dropdown
           .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
             h6.m-0.font-weight-bold.text-primary Earnings Overview
             .dropdown.no-arrow
@@ -67,11 +77,14 @@ block content
                 a.dropdown-item(href='#') Another action
                 .dropdown-divider
                 a.dropdown-item(href='#') Something else here
+          // Card Body
           .card-body
             .chart-area
               canvas#myAreaChart
+      // Pie Chart
       .col-xl-4.col-lg-5
         .card.shadow.mb-4
+          // Card Header - Dropdown
           .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
             h6.m-0.font-weight-bold.text-primary Revenue Sources
             .dropdown.no-arrow
@@ -83,6 +96,7 @@ block content
                 a.dropdown-item(href='#') Another action
                 .dropdown-divider
                 a.dropdown-item(href='#') Something else here
+          // Card Body
           .card-body
             .chart-pie.pt-4.pb-2
               canvas#myPieChart
@@ -96,8 +110,11 @@ block content
               span.mr-2
                 i.fas.fa-circle.text-info
                 |  Referral
+    // Content Row
     .row
+      // Content Column
       .col-lg-6.mb-4
+        // Project Card Example
         .card.shadow.mb-4
           .card-header.py-3
             h6.m-0.font-weight-bold.text-primary Projects
@@ -127,6 +144,7 @@ block content
               span.float-right Complete!
             .progress
               .progress-bar.bg-success(role='progressbar' style='width: 100%' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100')
+        // Color System
         .row
           .col-lg-6.mb-4
             .card.bg-primary.text-white.shadow
@@ -169,6 +187,7 @@ block content
                 | Dark
                 .text-white-50.small #5a5c69
       .col-lg-6.mb-4
+        // Illustrations
         .card.shadow.mb-4
           .card-header.py-3
             h6.m-0.font-weight-bold.text-primary Illustrations
@@ -184,6 +203,7 @@ block content
             a(target='_blank' rel='nofollow' href='https://undraw.co/')
               | Browse Illustrations on
               | unDraw →
+        // Approach
         .card.shadow.mb-4
           .card-header.py-3
             h6.m-0.font-weight-bold.text-primary Development Approach
@@ -195,7 +215,9 @@ block content
             p.mb-0
               | Before working with this theme, you should become familiar with the
               | Bootstrap framework, especially the utility classes.
+  // /.container-fluid
   block footer-scripts
     script(src='vendor/chart.js/Chart.min.js')
     script(src='js/demo/chart-area-demo.js')
     script(src='js/demo/chart-pie-demo.js')
+

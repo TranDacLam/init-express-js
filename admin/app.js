@@ -3,8 +3,9 @@ var express = require('express');
 var path = require('path'); 
 var passport = require('./../middleware/auth');
 
-//Controllers
+//routes
 var users = require('./routes/users');
+var templates = require('./routes/templates');
 
 var admin = express(); // the sub app
 
@@ -27,14 +28,10 @@ admin.use(function(req, res, next) {
 });
 
 admin.use('/users', users);
-
-// accept GET request on the admin index via /
-admin.get('/', function(req, res, next) {
-	res.send('Got a GET request at /admin/');
-});
+admin.use('/templates', templates);
 
 // accept GET request on the admin dashboard via /dashboard
-admin.get('/dashboard', function(req, res, next) {
+admin.get('/', function(req, res, next) {
 	return res.render('pages/dashboard/index', {title: 'Dashboard'});
 });
 
